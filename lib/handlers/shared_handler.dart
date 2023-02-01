@@ -9,6 +9,8 @@ class SharedKeys {
   String rememberMe = "REMEMBER_ME";
   String lang = "LANG";
   String theme = "THEME";
+  String fcmToken = "FCM_TOKEN";
+  String notificationInited = "NOTIFICATION_INITED";
 }
 
 enum ValueType { int, string, bool, double, map }

@@ -1,20 +1,26 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_project_base/base/blocs/lang_bloc.dart';
 import 'package:flutter_project_base/base/blocs/theme_bloc.dart';
+import 'package:flutter_project_base/handlers/firebase_notification_handler.dart';
 import 'package:flutter_project_base/handlers/shared_handler.dart';
 import 'package:flutter_project_base/network/network_handler.dart';
 import 'package:flutter_project_base/routers/navigator.dart';
 import 'package:flutter_project_base/routers/routers.dart';
 import 'package:flutter_project_base/utilities/theme/colors/colors.dart';
 import 'package:flutter_project_base/utilities/theme/colors/light_theme.dart';
-
+import 'firebase_options.dart';
 import 'handlers/localization_handler.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SharedHandler.init();
   NetworkHandler.init();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseNotificationsHandler.init();
   runApp(MyApp());
 }
 
