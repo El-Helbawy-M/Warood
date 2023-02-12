@@ -1,21 +1,24 @@
 import 'package:flutter_project_base/debug/log_printer.dart';
+import 'package:flutter_project_base/utilities/components/custom_snack_bar.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionHandler {
   Future<bool> _checkPermissionIdGranted(Permission permission) async => permission.status.isGranted;
   Future<bool> _checkPermission(Permission permission) async {
-    if (await _checkPermissionIdGranted(permission)) {
+    if (!(await _checkPermissionIdGranted(permission))) {
       if (await permission.status.isPermanentlyDenied) {
-        log_check(label: "Permission check", currentValue: _checkPermissionIdGranted(permission), expectedValue: false);
-        // show message
+        log_check(label: "Permission Premenant check", currentValue: await _checkPermissionIdGranted(permission), expectedValue: false);
+        showSnackBar(content: "Please allow this permission from the settings");
         return false;
       } else {
-        await permission.request();
-        log_check(label: "Permission check", currentValue: _checkPermissionIdGranted(permission), expectedValue: true);
-        return await _checkPermissionIdGranted(permission);
+        PermissionStatus status = await permission.request();
+        bool value = status.isGranted;
+        log_check(label: "Permission is Denied after request check", currentValue: value, expectedValue: true);
+        if (!value) showSnackBar(content: "Please allow this permission from the settings");
+        return value;
       }
     } else {
-      log_check(label: "Permission check", currentValue: _checkPermissionIdGranted(permission), expectedValue: true);
+      log_check(label: "Permission check", currentValue: await _checkPermissionIdGranted(permission), expectedValue: true);
       return true;
     }
   }
@@ -25,4 +28,6 @@ class PermissionHandler {
   Future<bool> checkBluetoothPermission() async => _checkPermission(Permission.bluetoothConnect);
 
   Future<bool> checkContactsPermission() async => _checkPermission(Permission.contacts);
+
+  Future<bool> checkLocationPermission() async => _checkPermission(Permission.location);
 }

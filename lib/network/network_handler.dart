@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_base/debug/log_printer.dart';
@@ -5,7 +7,7 @@ import '../config/api_names.dart';
 
 class NetworkHandler {
   static NetworkHandler? instance;
-  Dio _dio = Dio();
+  final Dio _dio = Dio();
   NetworkHandler._internal();
 
   factory NetworkHandler.init() {
@@ -34,9 +36,10 @@ class NetworkHandler {
     try {
       res = await _dio.get(url!, queryParameters: query);
       log_request(request: url, requestMethod: "GET", query: query ?? {}, headers: _dio.options.headers);
-      return res;
+      return res.data;
     } on DioError catch (e) {
       _errorHandler(e);
+      return null;
     }
   }
 
@@ -53,9 +56,10 @@ class NetworkHandler {
     try {
       res = await _dio.post(url!, data: body, queryParameters: query);
       log_request(request: url, requestMethod: "POST", query: query ?? {}, body: body ?? {}, headers: _dio.options.headers);
-      return res;
+      return res.data;
     } on DioError catch (e) {
       _errorHandler(e);
+      return null;
     }
   }
 }

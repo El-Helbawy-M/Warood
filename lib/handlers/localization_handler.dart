@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_project_base/base/blocs/settings_bloc.dart';
+import 'package:flutter_project_base/config/app_events.dart';
 import 'package:flutter_project_base/debug/log_printer.dart';
 import '../routers/navigator.dart';
 
@@ -16,9 +19,9 @@ class AppLocale {
     return Localizations.of(context, AppLocale);
   }
 
-  Future loadLang() async {
+  Future loadLang({Locale? updateData}) async {
+    log_data(label: "check locale", data: updateData ?? locale.languageCode);
     String langFile = await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
-    log_check(label: "App language", currentValue: locale.languageCode, expectedValue: langFile);
     Map<String, dynamic> loadedValues = jsonDecode(langFile);
     _loadedLocalizedValues = loadedValues.map((key, value) => MapEntry(key, value.toString()));
   }
@@ -45,7 +48,7 @@ class _AppLocalDelegate extends LocalizationsDelegate<AppLocale> {
   }
 
   @override
-  bool shouldReload(_AppLocalDelegate old) => false;
+  bool shouldReload(_AppLocalDelegate old) => true;
 }
 
 String getLang(String key) {

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_base/utilities/theme/colors/colors.dart';
 import 'package:flutter_project_base/utilities/theme/media.dart';
 import 'package:flutter_project_base/utilities/theme/text_styles.dart';
-
-import '../../base/blocs/theme_bloc.dart';
+import '../../base/blocs/settings_bloc.dart';
 
 class CustomBtn extends StatelessWidget {
   const CustomBtn({
@@ -26,19 +24,23 @@ class CustomBtn extends StatelessWidget {
   final Function()? onTap;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        width: width ?? MediaHelper.width,
-        height: height ?? 56,
-        decoration: BoxDecoration(
-          color: buttonColor ?? themeBloc.theme.valueOrNull!.primary,
-          borderRadius: BorderRadius.circular(radius ?? 8),
-        ),
-        child: Center(
-          child: Text(
-            text ?? "Clicke here",
-            style: AppTextStyles.w700.copyWith(fontSize: 14, color: textColor ?? Colors.white),
+    return Material(
+      borderRadius: BorderRadius.circular(radius ?? 8),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(radius ?? 8),
+        child: Container(
+          width: width ?? MediaHelper.width,
+          height: height ?? 56,
+          decoration: BoxDecoration(
+            color: buttonColor ?? SettingsBloc.instance.theme.primary,
+            borderRadius: BorderRadius.circular(radius ?? 8),
+          ),
+          child: Center(
+            child: Text(
+              text ?? "Clicke here",
+              style: AppTextStyles.w700.copyWith(fontSize: 14, color: textColor ?? Colors.white),
+            ),
           ),
         ),
       ),

@@ -8,5 +8,14 @@
     "email_validate": "The email should contain (@) and (.com)",
     "phone_validate": "The phone number should be in 11 number",
     "password_validate": "The password should be larger than 8 charcter",
-    "confirm_password_validate": "the confirm password dosn't match the password"
+    "confirm_password_validate": "the confirm password dosn't match the password",
+    "try_again": "Try again",
+    "allow_your_location": "Allow your location",
+    "am": "AM",
+    "pm": "PM",
+    "fajr": "Fajr",
+    "dhuhr": "Dhuhr",
+    "asr": "Asr",
+    "maghrib": "Maghrib",
+    "isha": "isha"
 }

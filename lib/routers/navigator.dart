@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_base/handlers/qr_code_scanner/qr_scanner_view.dart';
 import 'package:flutter_project_base/routers/routers.dart';
 import 'package:flutter_project_base/services/home/pages/home_page.dart';
-import 'package:flutter_project_base/services/splash/blocs/splash_bloc.dart';
-
+import '../services/settings/pages/settings_page.dart';
 import '../services/splash/pages/splash_page.dart';
 
 const begin = Offset(0.0, 1.0);
@@ -37,6 +35,8 @@ class CustomNavigator {
         return _pageRoute(const QrCodeScannerView());
       case Routes.home:
         return _pageRoute(const HomePage());
+      case Routes.settings:
+        return _pageRoute(const SettingsPage());
     }
     return MaterialPageRoute(builder: (_) => Container());
   }

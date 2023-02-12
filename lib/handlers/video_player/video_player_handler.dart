@@ -1,13 +1,10 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_project_base/base/blocs/theme_bloc.dart';
 import 'package:flutter_project_base/handlers/icon_handler.dart';
 import 'package:flutter_project_base/utilities/extensions/timer_formatter.dart';
 import 'package:video_player/video_player.dart';
+
+import '../../base/blocs/settings_bloc.dart';
 
 class VideoPlayerView extends StatefulWidget {
   const VideoPlayerView({super.key, required this.type, this.assetPath, this.filePath, this.networkUrl});
@@ -80,23 +77,23 @@ class _VideoPlayerViewState extends State<VideoPlayerView> {
                         children: [
                           GestureDetector(
                             onTap: () async => _controller.value.isPlaying ? await _controller.seekTo(Duration(seconds: _controller.value.position.inSeconds - 10)).then((value) => setState(() {})) : null,
-                            child: drawSvgIcon("video_icons/backward_10", width: _btnheight, height: _btnheight, iconColor: Colors.white),
+                            child: drawSvgIcon("video_icons/backward_10", width: _btnWidth, height: _btnheight, iconColor: Colors.white),
                           ),
                           AnimatedCrossFade(
                             duration: const Duration(milliseconds: 400),
                             crossFadeState: _controller.value.isPlaying ? CrossFadeState.showSecond : CrossFadeState.showFirst,
                             firstChild: GestureDetector(
                               onTap: () async => await _controller.play().then((value) => setState(() => showButtons = false)),
-                              child: drawSvgIcon("video_icons/play_bold", width: _btnheight, height: _btnheight, iconColor: Colors.white),
+                              child: drawSvgIcon("video_icons/play_bold", width: _btnWidth, height: _btnheight, iconColor: Colors.white),
                             ),
                             secondChild: GestureDetector(
                               onTap: () async => await _controller.pause().then((value) => setState(() => showButtons = true)),
-                              child: drawSvgIcon("video_icons/pause_bold", width: _btnheight, height: _btnheight, iconColor: Colors.white),
+                              child: drawSvgIcon("video_icons/pause_bold", width: _btnWidth, height: _btnheight, iconColor: Colors.white),
                             ),
                           ),
                           GestureDetector(
                             onTap: () async => _controller.value.isPlaying ? await _controller.seekTo(Duration(seconds: _controller.value.position.inSeconds + 10)).then((value) => setState(() {})) : null,
-                            child: drawSvgIcon("video_icons/forward_10", width: _btnheight, height: _btnheight, iconColor: Colors.white),
+                            child: drawSvgIcon("video_icons/forward_10", width: _btnWidth, height: _btnheight, iconColor: Colors.white),
                           ),
                         ],
                       ),
@@ -150,8 +147,8 @@ class VideoProgress extends StatelessWidget {
       children: [
         Slider.adaptive(
           value: currentValue.toDouble(),
-          activeColor: themeBloc.theme.valueOrNull!.primary,
-          inactiveColor: themeBloc.theme.valueOrNull!.inactiveProgress,
+          activeColor: SettingsBloc.instance.theme.primary,
+          inactiveColor: SettingsBloc.instance.theme.inactiveProgress,
           onChanged: onChanged,
           max: duration.toDouble(),
         ),

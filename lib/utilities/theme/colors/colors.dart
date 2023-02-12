@@ -7,11 +7,16 @@ abstract class ColorsTheme {
   late Color primary;
   late Color secondery;
   late Color borderColor;
-  late Color inActive;
   late Color greyTitle;
   late Color background;
   late Color error;
   late Color inactiveProgress;
+  late Color mainTextColor;
+  late Color hintTextColor;
+  late Color inActiveColor;
+  late Color pendingColor;
+  late Color activeColor;
+  late Color notStartedColor;
 
   static ColorsTheme themeMapper(ColorsThemeType value) {
     switch (value) {

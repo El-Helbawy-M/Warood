@@ -21,3 +21,11 @@ void log_error({required String type, required String message, String hint = ""}
     "Error" + "\n" + "================================================" + "\n" + "Error $type" + "\n" + "Message: $message" + "\n" + "Hint: $hint" + "\n" + "================================================" + "\nEnd" + "\n\n",
   );
 }
+
+// ignore: non_constant_identifier_names
+void log_data({required String label, required dynamic data}) {
+  return log(
+    // ignore: prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
+    "Data" + "\n" + "================================================" + "\n" + "Content of $label" + "\n" + "Content: $data" + "\n" + "================================================" + "\nEnd" + "\n\n",
+  );
+}

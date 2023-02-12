@@ -1,10 +1,9 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project_base/base/blocs/theme_bloc.dart';
 import 'package:flutter_project_base/handlers/icon_handler.dart';
+import '../../base/blocs/settings_bloc.dart';
 import '../../handlers/file_picker_handler.dart';
-import '../theme/colors/colors.dart';
 import '../theme/media.dart';
 import '../theme/text_styles.dart';
 import 'custom_btn.dart';
@@ -65,7 +64,7 @@ class _UploadImageState extends State<UploadImage> {
                     borderRadius: BorderRadius.circular(15.0),
                     border: Border.all(
                       width: 1,
-                      color: widget.isFilled ? themeBloc.theme.valueOrNull!.primary : (widget.hasError ? themeBloc.theme.valueOrNull!.inActive : themeBloc.theme.valueOrNull!.borderColor),
+                      color: widget.isFilled ? SettingsBloc.instance.theme.primary : (widget.hasError ? SettingsBloc.instance.theme.inActiveColor : SettingsBloc.instance.theme.borderColor),
                     )
                     // image: DecorationImage(
                     //     image: Image.asset(
@@ -90,7 +89,7 @@ class _UploadImageState extends State<UploadImage> {
                               )
                             : drawSvgIcon(
                                 'gallery',
-                                iconColor: (widget.hasError ? themeBloc.theme.valueOrNull!.error : themeBloc.theme.valueOrNull!.error),
+                                iconColor: (widget.hasError ? SettingsBloc.instance.theme.error : SettingsBloc.instance.theme.error),
                               ),
                       ),
                     ),
@@ -101,7 +100,7 @@ class _UploadImageState extends State<UploadImage> {
                           : widget.label != null
                               ? widget.label!
                               : "Upload Image",
-                      style: TextStyle(color: themeBloc.theme.valueOrNull!.greyTitle, fontSize: 24, fontWeight: FontWeight.w600),
+                      style: TextStyle(color: SettingsBloc.instance.theme.greyTitle, fontSize: 24, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 6,
@@ -153,8 +152,8 @@ class _UploadImageState extends State<UploadImage> {
                                       widget.updatedImage!(null);
                                       if (widget.updateFile != null) widget.updateFile!(null);
                                     },
-                                    buttonColor: themeBloc.theme.valueOrNull!.inActive.withOpacity(.1),
-                                    textColor: themeBloc.theme.valueOrNull!.inActive,
+                                    buttonColor: SettingsBloc.instance.theme.inActiveColor.withOpacity(.1),
+                                    textColor: SettingsBloc.instance.theme.inActiveColor,
                                   ),
                                 ),
                               ],
@@ -172,7 +171,7 @@ class _UploadImageState extends State<UploadImage> {
         if (widget.hasError)
           Text(
             widget.errorText ?? "",
-            style: AppTextStyles.w400.copyWith(fontSize: 14, color: themeBloc.theme.valueOrNull!.inActive),
+            style: AppTextStyles.w400.copyWith(fontSize: 14, color: SettingsBloc.instance.theme.inActiveColor),
           )
       ],
     );
