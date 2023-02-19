@@ -42,12 +42,14 @@ dependencies:
   shimmer: ^2.0.0
   should_rebuild: ^1.0.1
 
+
   # Network packages
   dio: ^4.0.6
   
   # State Managment
   flutter_bloc: ^7.0.0
   rxdart: ^0.27.7
+  flutter_phoenix: ^1.1.0
 
   # Local Database
   shared_preferences: ^2.0.16
@@ -99,6 +101,7 @@ flutter:
     - assets/icons/svg/
     - assets/icons/svg/video_icons/
     - assets/icons/svg/drawer_icons/
+    - assets/icons/svg/rewards/
     - assets/lang/
   #   - images/a_dot_ham.jpeg
 

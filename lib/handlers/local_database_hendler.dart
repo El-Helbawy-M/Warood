@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_project_base/debug/log_printer.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -24,13 +26,15 @@ class LocaleDatabaseHadnler {
     localDatabaseHelper.database = await openDatabase(
       join(await getDatabasesPath(), 'pray_checks.db'),
       onCreate: (db, version) {
+        db.execute(
+          'CREATE TABLE Rewards(day TEXT, month TEXT, year TEXT, rewardId INTEGER, PRIMARY KEY (day, month, year))',
+        );
         return db.execute(
           'CREATE TABLE ${intialTableName ?? "Items"}(day TEXT, month TEXT, year TEXT, fajr_check INTEGER, fajr_check_date TEXT, dhuhr_check INTEGER, dhuhr_check_date TEXT, asr_check INTEGER, asr_check_date TEXT, isha_check INTEGER, isha_check_date TEXT, maghrib_check INTEGER, maghrib_check_date TEXT, PRIMARY KEY (day, month, year))',
         );
       },
       version: 1,
     );
-    log_data(label: "Database init", data: "The database is initalized");
   }
 
   Future<void> insertEntity({required String tableName, required LocaleSingleMapper opject}) async {

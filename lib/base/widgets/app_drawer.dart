@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_base/base/blocs/settings_bloc.dart';
 import 'package:flutter_project_base/handlers/icon_handler.dart';
+import 'package:flutter_project_base/handlers/localization_handler.dart';
 import 'package:flutter_project_base/routers/navigator.dart';
 import 'package:flutter_project_base/routers/routers.dart';
 import 'package:flutter_project_base/utilities/theme/text_styles.dart';
+import '../blocs/settings_bloc.dart';
 
 class AppDrawer extends StatelessWidget with MenuOptionsActions {
   const AppDrawer({super.key});
@@ -16,8 +17,9 @@ class AppDrawer extends StatelessWidget with MenuOptionsActions {
           children: [
             //app setting options
             const DrawerPartHeader(header: "App Options"),
-            DrawerMenuOption(iconName: "settings", label: "Settings", onTap: goToSettings),
-            DrawerMenuOption(iconName: "rate", label: "Rate App", onTap: goToSettings),
+            DrawerMenuOption(iconName: "gallery", label: getLang("gallery"), onTap: goToGallery),
+            DrawerMenuOption(iconName: "settings", label: getLang("settings"), onTap: goToSettings),
+            DrawerMenuOption(iconName: "rate", label: getLang("rate"), onTap: goToSettings),
           ],
         ),
       ),
@@ -33,7 +35,7 @@ class DrawerMenuOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      leading: drawSvgIcon("drawer_icons/$iconName", iconColor: SettingsBloc.instance.theme.primary),
+      leading: drawSvgIcon("drawer_icons/$iconName", iconColor: settings.settingsModel.valueOrNull!.theme.primary),
       minLeadingWidth: 24,
       title: Text(
         label,
@@ -73,5 +75,10 @@ mixin MenuOptionsActions {
   goToSettings() {
     CustomNavigator.pop();
     CustomNavigator.push(Routes.settings);
+  }
+
+  goToGallery() {
+    CustomNavigator.pop();
+    CustomNavigator.push(Routes.gallery);
   }
 }

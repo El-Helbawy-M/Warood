@@ -13,4 +13,5 @@ abstract class Routes {
   static const String diseaseDetection = "disease_detection";
   static const String qrScannerCode = "qr_code_scanner";
   static const String settings = "settings";
+  static const String gallery = "gallery";
 }

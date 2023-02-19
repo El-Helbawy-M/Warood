@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../base/blocs/settings_bloc.dart';
+import '../../../debug/log_printer.dart';
 import '../../../handlers/icon_handler.dart';
 import '../../../utilities/theme/media.dart';
 import '../../../utilities/theme/text_styles.dart';
@@ -18,10 +19,10 @@ class HomeTimerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),
-      width: MediaHelper.width,
+      width: MediaHelper.width(context),
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: SettingsBloc.instance.theme.primary,
+        color: settings.settingsModel.valueOrNull!.theme.primary,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +31,7 @@ class HomeTimerView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(clockType, style: AppTextStyles.w700.copyWith(fontSize: 24, color: SettingsBloc.instance.theme.secondery)),
+              Text(clockType, style: AppTextStyles.w700.copyWith(fontSize: 24, color: settings.settingsModel.valueOrNull!.theme.secondery)),
               Text(clock, style: AppTextStyles.w700.copyWith(fontSize: 36, color: Colors.white)),
             ],
           ),

@@ -32,9 +32,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       const Duration(seconds: 2),
       () {
         if (SharedHandler.instance!.getData(key: SharedKeys().isLogin, valueType: ValueType.bool)) {
-          CustomNavigator.push(Routes.home);
+          CustomNavigator.push(Routes.home, clean: true);
         } else {
-          CustomNavigator.push(Routes.home);
+          CustomNavigator.push(Routes.home, clean: true);
         }
       },
     );
@@ -46,8 +46,8 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return CustomPageBody(
       body: SizedBox(
-        width: MediaHelper.width,
-        height: MediaHelper.height,
+        width: MediaHelper.width(context),
+        height: MediaHelper.height(context),
         child: Column(
           children: [
             Expanded(

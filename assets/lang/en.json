@@ -11,11 +11,17 @@
     "confirm_password_validate": "the confirm password dosn't match the password",
     "try_again": "Try again",
     "allow_your_location": "Allow your location",
+    "settings": "Settings",
+    "dark_mod": "Dark Mode",
+    "app_settings": "App Settings",
+    "rate": "Rate App",
     "am": "AM",
     "pm": "PM",
     "fajr": "Fajr",
     "dhuhr": "Dhuhr",
     "asr": "Asr",
     "maghrib": "Maghrib",
-    "isha": "isha"
+    "isha": "isha",
+    "thank_god": "Thank God",
+    "gallery": "Gallery"
 }

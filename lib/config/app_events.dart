@@ -18,3 +18,7 @@ class Init extends AppEvents {
 class Update extends AppEvents {
   Update({dynamic arguments}) : super(arguments: arguments);
 }
+
+class SetState extends AppEvents {
+  SetState({dynamic arguments}) : super(arguments: arguments);
+}

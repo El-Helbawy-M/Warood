@@ -53,7 +53,7 @@ class SharedHandler {
         return _sharedPreferences.getBool(key) ?? false;
       case ValueType.map:
         String? value = _sharedPreferences.getString(key);
-        Map data = value != null ? jsonDecode(value) : {};
+        Map<String, dynamic> data = value != null ? jsonDecode(value) : {};
         return data;
       default:
         return "";

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_base/base/widgets/app_drawer.dart';
+import 'package:flutter_project_base/base/widgets/reward_dialog.dart';
 import 'package:flutter_project_base/config/app_states.dart';
 import 'package:flutter_project_base/debug/log_printer.dart';
 import 'package:flutter_project_base/services/home/Blocs/home_bloc.dart';
@@ -42,13 +43,13 @@ class HomePage extends StatelessWidget {
             child: BlocBuilder<PrayTimeBloc, AppStates>(
               builder: (context, state) {
                 PrayerTimeModel? model;
+
                 if (state is Done) {
                   model = state.model as PrayerTimeModel;
                   return BlocBuilder<PrayCheckBloc, AppStates>(
                     builder: (context, state) {
                       if (state is Done) {
                         DayPraysModel praysChecks = state.data as DayPraysModel;
-                        log_data(label: "Check data", data: praysChecks.fajrCheck);
                         return Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 16),
                           child: SingleChildScrollView(

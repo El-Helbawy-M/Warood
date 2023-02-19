@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_base/handlers/qr_code_scanner/qr_scanner_view.dart';
 import 'package:flutter_project_base/routers/routers.dart';
+import 'package:flutter_project_base/services/gallery/pages/gallery_page.dart';
 import 'package:flutter_project_base/services/home/pages/home_page.dart';
 import '../services/settings/pages/settings_page.dart';
 import '../services/splash/pages/splash_page.dart';
@@ -13,7 +14,6 @@ var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 class CustomNavigator {
   static final GlobalKey<NavigatorState> navigatorState = GlobalKey<NavigatorState>();
   static final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
-  static final GlobalKey<ScaffoldMessengerState> scaffoldState = GlobalKey<ScaffoldMessengerState>();
 
   static _pageRoute(Widget screen) => PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) => screen,
@@ -37,6 +37,8 @@ class CustomNavigator {
         return _pageRoute(const HomePage());
       case Routes.settings:
         return _pageRoute(const SettingsPage());
+      case Routes.gallery:
+        return _pageRoute(const GalleryPage());
     }
     return MaterialPageRoute(builder: (_) => Container());
   }

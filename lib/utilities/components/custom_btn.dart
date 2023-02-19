@@ -30,10 +30,10 @@ class CustomBtn extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(radius ?? 8),
         child: Container(
-          width: width ?? MediaHelper.width,
+          width: width ?? MediaHelper.width(context),
           height: height ?? 56,
           decoration: BoxDecoration(
-            color: buttonColor ?? SettingsBloc.instance.theme.primary,
+            color: buttonColor ?? settings.settingsModel.valueOrNull!.theme.primary,
             borderRadius: BorderRadius.circular(radius ?? 8),
           ),
           child: Center(

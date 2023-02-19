@@ -1,3 +1,4 @@
+import 'package:flutter_project_base/debug/log_printer.dart';
 import 'package:flutter_project_base/handlers/local_database_hendler.dart';
 import 'package:flutter_project_base/services/home/Blocs/pray_check_bloc.dart';
 import 'package:intl/intl.dart';
@@ -38,6 +39,7 @@ abstract class PrayCheckRepo {
     String year = DateFormat("y").format(DateTime.now());
     bool value = await LocaleDatabaseHadnler.localDatabaseHelper.contains(whereList: ['day', 'month', 'year'], whereData: [day, month, year], tableName: TablesNames().praysTable);
     if (value) {
+      log_data(label: "message", data: value);
       DayPraysModel model = await LocaleDatabaseHadnler.localDatabaseHelper.getEntity(whereList: ['day', 'month', 'year'], whereData: [day, month, year], opjectModel: DayPraysModel(), tableName: TablesNames().praysTable) as DayPraysModel;
       return model;
     } else {
@@ -45,5 +47,13 @@ abstract class PrayCheckRepo {
       await LocaleDatabaseHadnler.localDatabaseHelper.insertEntity(tableName: TablesNames().praysTable, opject: model);
       return model;
     }
+  }
+
+  static Future<bool> checkReward() async {
+    String month = DateFormat("MMMM").format(DateTime.now());
+    String day = DateFormat("EEEE").format(DateTime.now());
+    String year = DateFormat("y").format(DateTime.now());
+    DayPraysModel model = await LocaleDatabaseHadnler.localDatabaseHelper.getEntity(whereList: ['day', 'month', 'year'], whereData: [day, month, year], opjectModel: DayPraysModel(), tableName: TablesNames().praysTable) as DayPraysModel;
+    return model.allPraysIsChecked;
   }
 }

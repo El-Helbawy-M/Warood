@@ -58,13 +58,13 @@ class _UploadImageState extends State<UploadImage> {
               },
               child: Container(
                 height: image != null ? 230 : 180,
-                width: MediaHelper.width,
+                width: MediaHelper.width(context),
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15.0),
                     border: Border.all(
                       width: 1,
-                      color: widget.isFilled ? SettingsBloc.instance.theme.primary : (widget.hasError ? SettingsBloc.instance.theme.inActiveColor : SettingsBloc.instance.theme.borderColor),
+                      color: widget.isFilled ? settings.settingsModel.valueOrNull!.theme.primary : (widget.hasError ? settings.settingsModel.valueOrNull!.theme.inActiveColor : settings.settingsModel.valueOrNull!.theme.borderColor),
                     )
                     // image: DecorationImage(
                     //     image: Image.asset(
@@ -89,7 +89,7 @@ class _UploadImageState extends State<UploadImage> {
                               )
                             : drawSvgIcon(
                                 'gallery',
-                                iconColor: (widget.hasError ? SettingsBloc.instance.theme.error : SettingsBloc.instance.theme.error),
+                                iconColor: (widget.hasError ? settings.settingsModel.valueOrNull!.theme.error : settings.settingsModel.valueOrNull!.theme.error),
                               ),
                       ),
                     ),
@@ -100,7 +100,7 @@ class _UploadImageState extends State<UploadImage> {
                           : widget.label != null
                               ? widget.label!
                               : "Upload Image",
-                      style: TextStyle(color: SettingsBloc.instance.theme.greyTitle, fontSize: 24, fontWeight: FontWeight.w600),
+                      style: TextStyle(color: settings.settingsModel.valueOrNull!.theme.greyTitle, fontSize: 24, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 6,
@@ -152,8 +152,8 @@ class _UploadImageState extends State<UploadImage> {
                                       widget.updatedImage!(null);
                                       if (widget.updateFile != null) widget.updateFile!(null);
                                     },
-                                    buttonColor: SettingsBloc.instance.theme.inActiveColor.withOpacity(.1),
-                                    textColor: SettingsBloc.instance.theme.inActiveColor,
+                                    buttonColor: settings.settingsModel.valueOrNull!.theme.inActiveColor.withOpacity(.1),
+                                    textColor: settings.settingsModel.valueOrNull!.theme.inActiveColor,
                                   ),
                                 ),
                               ],
@@ -171,7 +171,7 @@ class _UploadImageState extends State<UploadImage> {
         if (widget.hasError)
           Text(
             widget.errorText ?? "",
-            style: AppTextStyles.w400.copyWith(fontSize: 14, color: SettingsBloc.instance.theme.inActiveColor),
+            style: AppTextStyles.w400.copyWith(fontSize: 14, color: settings.settingsModel.valueOrNull!.theme.inActiveColor),
           )
       ],
     );

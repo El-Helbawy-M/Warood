@@ -20,14 +20,13 @@ class AppLocale {
   }
 
   Future loadLang({Locale? updateData}) async {
-    log_data(label: "check locale", data: updateData ?? locale.languageCode);
     String langFile = await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
     Map<String, dynamic> loadedValues = jsonDecode(langFile);
     _loadedLocalizedValues = loadedValues.map((key, value) => MapEntry(key, value.toString()));
   }
 
   String getTranslated(String key) {
-    return _loadedLocalizedValues[key]!;
+    return _loadedLocalizedValues[key] ?? "not found";
   }
 
   static const LocalizationsDelegate<AppLocale> delegate = _AppLocalDelegate();

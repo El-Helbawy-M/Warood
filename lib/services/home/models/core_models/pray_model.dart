@@ -6,6 +6,7 @@ class DayPraysModel extends LocaleSingleMapper {
   bool? fajrCheck, dhuhrCheck, asrCheck, maghribCheck, ishaCheck;
   List<bool> checks = [];
   List<String> checksDates = [];
+  bool get allPraysIsChecked => (fajrCheck ?? false) && (dhuhrCheck ?? false) && (asrCheck ?? false) && (maghribCheck ?? false) && (ishaCheck ?? false);
   DayPraysModel();
   DayPraysModel.fromMap({
     required this.day,

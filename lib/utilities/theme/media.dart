@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../routers/navigator.dart';
-
 abstract class MediaHelper {
-  static double width = MediaQuery.of(CustomNavigator.navigatorState.currentContext!).size.width;
-  static double height = MediaQuery.of(CustomNavigator.navigatorState.currentContext!).size.height;
+  static double width(BuildContext context) => MediaQuery.of(context).size.width;
+  static double height(BuildContext context) => MediaQuery.of(context).size.height;
 }
