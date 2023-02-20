@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_project_base/base/blocs/settings_bloc.dart';
 import 'package:flutter_project_base/base/blocs/user_bloc.dart';
 import 'package:flutter_project_base/utilities/theme/media.dart';
 import '../../config/app_states.dart';
@@ -18,7 +17,7 @@ class CustomPageBody extends StatelessWidget {
         bool isDone = state is Done;
         return Scaffold(
           drawer: drawer,
-          backgroundColor: backgroundColor ?? settings.settingsModel.valueOrNull!.theme.background,
+          backgroundColor: backgroundColor ?? Theme.of(context).backgroundColor,
           appBar: appBar,
           body: SizedBox(
             width: MediaHelper.width(context),

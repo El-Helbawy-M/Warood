@@ -1,7 +1,7 @@
-import 'package:flutter_project_base/utilities/theme/colors/colors.dart';
+import 'package:flutter_project_base/utilities/theme/colors.dart';
 
 class SettingsModel {
   String lang;
-  ColorsTheme theme;
+  ColorsThemeType theme;
   SettingsModel({required this.lang, required this.theme});
 }

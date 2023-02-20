@@ -61,13 +61,13 @@ class PrayCardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     PrayState state = _generateState();
-    log_data(label: "label", data: name.toLowerCase());
+    log_data(label: "c", data: name.toLowerCase());
     return Container(
       height: state == PrayState.started && !isChecked ? 160 : 94,
       width: MediaHelper.width(context),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(width: 1, color: settings.settingsModel.valueOrNull!.theme.borderColor),
+        border: Border.all(width: 1, color: Color(0xffE7E7E7)),
         // color: settings.settingsModel.valueOrNull!.theme.secondery,
       ),
       padding: const EdgeInsets.all(16),
@@ -82,8 +82,8 @@ class PrayCardView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(time, style: AppTextStyles.w500.copyWith(fontSize: 18, color: settings.settingsModel.valueOrNull!.theme.hintTextColor)),
-                    Text(getLang(name.toLowerCase()), style: AppTextStyles.w700.copyWith(fontSize: 24, color: settings.settingsModel.valueOrNull!.theme.mainTextColor)),
+                    Text(time, style: AppTextStyles.w500.copyWith(fontSize: 18, color: Theme.of(context).hintColor)),
+                    Text(getLang(name.toLowerCase()), style: AppTextStyles.w700.copyWith(fontSize: 24, color: Theme.of(context).textTheme.titleLarge!.color)),
                   ],
                 ),
                 StateCard(state: state),

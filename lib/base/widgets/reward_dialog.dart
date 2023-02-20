@@ -24,7 +24,7 @@ class RewardDialog extends StatelessWidget {
           children: [
             Column(
               children: [
-                Align(alignment: Alignment.bottomRight, child: drawSvgIcon("close_circle", iconColor: settings.settingsModel.valueOrNull!.theme.primary)),
+                Align(alignment: Alignment.bottomRight, child: drawSvgIcon("close_circle", iconColor: Theme.of(context).primaryColor)),
                 Stack(
                   alignment: Alignment.center,
                   children: [
@@ -40,11 +40,11 @@ class RewardDialog extends StatelessWidget {
                 const SizedBox(height: 24),
                 Text(
                   mainText,
-                  style: AppTextStyles.w600.copyWith(fontSize: 24, color: settings.settingsModel.valueOrNull!.theme.primary),
+                  style: AppTextStyles.w600.copyWith(fontSize: 24, color: Theme.of(context).primaryColor),
                 ),
                 Text(
                   subText,
-                  style: AppTextStyles.w500.copyWith(fontSize: 12, color: settings.settingsModel.valueOrNull!.theme.greyTitle),
+                  style: AppTextStyles.w500.copyWith(fontSize: 12, color: Theme.of(context).textTheme.titleLarge!.color),
                 ),
                 const SizedBox(height: 32),
                 CustomBtn(

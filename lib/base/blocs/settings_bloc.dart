@@ -1,21 +1,19 @@
 import 'package:flutter_project_base/base/models/settings_model.dart';
-import 'package:flutter_project_base/debug/log_printer.dart';
 import 'package:flutter_project_base/handlers/localization_handler.dart';
 import 'package:flutter_project_base/handlers/shared_handler.dart';
-import 'package:flutter_project_base/utilities/theme/colors/light_theme.dart';
 import 'package:rxdart/rxdart.dart';
 
-import '../../utilities/theme/colors/colors.dart';
+import '../../utilities/theme/colors.dart';
 
 class SettingsBloc {
   init() {
-    SettingsModel model = SettingsModel(lang: "en", theme: LightTheme());
+    SettingsModel model = SettingsModel(lang: "en", theme: ColorsThemeType.lightTheme);
     // init theme
     String theme = SharedHandler.instance!.getData(key: SharedKeys().theme, valueType: ValueType.string);
     if (theme.isEmpty) {
-      model.theme = ColorsTheme.themeMapper(ColorsThemeType.lightTheme);
+      model.theme = ColorsThemeType.lightTheme;
     } else {
-      model.theme = ColorsTheme.themeMapper(_themeTypeFromString(theme));
+      model.theme = _themeTypeFromString(theme);
     }
     // init lang
     String lang = SharedHandler.instance!.getData(key: SharedKeys().lang, valueType: ValueType.string);
@@ -36,8 +34,7 @@ class SettingsBloc {
   // observer value setters
   set updateTheme(ColorsThemeType value) {
     SharedHandler.instance!.setData(SharedKeys().theme, value: value.toString());
-    settingsModel.valueOrNull!.theme = ColorsTheme.themeMapper(value);
-
+    settingsModel.valueOrNull!.theme = value;
     settingsModel.sink.add(settingsModel.valueOrNull);
   }
 

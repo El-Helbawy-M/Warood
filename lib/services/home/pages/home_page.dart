@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_project_base/base/blocs/settings_bloc.dart';
+import 'package:flutter_project_base/base/models/settings_model.dart';
 import 'package:flutter_project_base/base/widgets/app_drawer.dart';
 import 'package:flutter_project_base/base/widgets/reward_dialog.dart';
 import 'package:flutter_project_base/config/app_states.dart';
@@ -39,49 +41,53 @@ class HomePage extends StatelessWidget {
           ),
 
           // Prauies list
-          Expanded(
-            child: BlocBuilder<PrayTimeBloc, AppStates>(
-              builder: (context, state) {
-                PrayerTimeModel? model;
-
-                if (state is Done) {
-                  model = state.model as PrayerTimeModel;
-                  return BlocBuilder<PrayCheckBloc, AppStates>(
+          StreamBuilder<SettingsModel?>(
+              stream: settings.settingsModelStream,
+              builder: (context, snapshot) {
+                return Expanded(
+                  child: BlocBuilder<PrayTimeBloc, AppStates>(
                     builder: (context, state) {
+                      print("HOME BLOC STATE $state ");
+                      PrayerTimeModel? model;
                       if (state is Done) {
-                        DayPraysModel praysChecks = state.data as DayPraysModel;
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          child: SingleChildScrollView(
-                            physics: const BouncingScrollPhysics(),
-                            child: Column(
-                              children: [
-                                const SizedBox(height: 4),
-                                ...List.generate(
-                                  5,
-                                  (index) => PrayCardView(
-                                    name: model!.timings!.praysNames[index],
-                                    time: model.timings!.praysTimes[index],
-                                    isChecked: praysChecks.checks[index],
+                        model = state.model as PrayerTimeModel;
+                        return BlocBuilder<PrayCheckBloc, AppStates>(
+                          builder: (context, state) {
+                            if (state is Done) {
+                              DayPraysModel praysChecks = state.data as DayPraysModel;
+                              return Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 16),
+                                child: SingleChildScrollView(
+                                  physics: const BouncingScrollPhysics(),
+                                  child: Column(
+                                    children: [
+                                      const SizedBox(height: 4),
+                                      ...List.generate(
+                                        5,
+                                        (index) => PrayCardView(
+                                          name: model!.timings!.praysNames[index],
+                                          time: model.timings!.praysTimes[index],
+                                          isChecked: praysChecks.checks[index],
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
+                              );
+                            } else {
+                              return const Center(child: CircularProgressIndicator());
+                            }
+                          },
                         );
                       } else {
-                        return const Center(child: CircularProgressIndicator());
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
                       }
                     },
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-              },
-            ),
-          ),
+                  ),
+                );
+              }),
         ],
       ),
     );

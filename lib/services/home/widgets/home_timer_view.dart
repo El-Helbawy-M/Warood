@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_base/utilities/theme/colors.dart';
 import '../../../base/blocs/settings_bloc.dart';
 import '../../../debug/log_printer.dart';
 import '../../../handlers/icon_handler.dart';
@@ -21,9 +22,7 @@ class HomeTimerView extends StatelessWidget {
       duration: const Duration(milliseconds: 500),
       width: MediaHelper.width(context),
       padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: settings.settingsModel.valueOrNull!.theme.primary,
-      ),
+      decoration: BoxDecoration(color: Theme.of(context).primaryColor, image: DecorationImage(image: AssetImage("assets/images/${settings.settingsModel.valueOrNull!.theme == ColorsThemeType.lightTheme ? "main_light_bg" : "main_dark_bg"}.png"), fit: BoxFit.contain)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,7 +30,7 @@ class HomeTimerView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(clockType, style: AppTextStyles.w700.copyWith(fontSize: 24, color: settings.settingsModel.valueOrNull!.theme.secondery)),
+              Text(clockType, style: AppTextStyles.w700.copyWith(fontSize: 24, color: Theme.of(context).colorScheme.secondary)),
               Text(clock, style: AppTextStyles.w700.copyWith(fontSize: 36, color: Colors.white)),
             ],
           ),

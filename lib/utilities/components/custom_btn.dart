@@ -33,7 +33,7 @@ class CustomBtn extends StatelessWidget {
           width: width ?? MediaHelper.width(context),
           height: height ?? 56,
           decoration: BoxDecoration(
-            color: buttonColor ?? settings.settingsModel.valueOrNull!.theme.primary,
+            color: buttonColor ?? Theme.of(context).primaryColor,
             borderRadius: BorderRadius.circular(radius ?? 8),
           ),
           child: Center(

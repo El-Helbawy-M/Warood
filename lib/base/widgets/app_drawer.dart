@@ -35,7 +35,7 @@ class DrawerMenuOption extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: onTap,
-      leading: drawSvgIcon("drawer_icons/$iconName", iconColor: settings.settingsModel.valueOrNull!.theme.primary),
+      leading: drawSvgIcon("drawer_icons/$iconName", iconColor: Theme.of(context).primaryColor),
       minLeadingWidth: 24,
       title: Text(
         label,

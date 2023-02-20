@@ -2,18 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_project_base/base/blocs/settings_bloc.dart';
-import 'package:flutter_project_base/config/app_states.dart';
 import 'package:flutter_project_base/config/database_table_names.dart';
-import 'package:flutter_project_base/debug/log_printer.dart';
 import 'package:flutter_project_base/handlers/local_database_hendler.dart';
 import 'package:flutter_project_base/handlers/shared_handler.dart';
 import 'package:flutter_project_base/network/network_handler.dart';
 import 'package:flutter_project_base/routers/navigator.dart';
 import 'package:flutter_project_base/routers/routers.dart';
-import 'package:flutter_project_base/services/gallery/pages/gallery_page.dart';
-import 'package:flutter_project_base/utilities/theme/colors/colors.dart';
-import 'package:flutter_project_base/utilities/theme/colors/light_theme.dart';
-import 'package:should_rebuild/should_rebuild.dart';
+import 'package:flutter_project_base/utilities/theme/colors.dart';
 import 'base/models/settings_model.dart';
 import 'config/app_blocs_provider.dart';
 import 'handlers/localization_handler.dart';
@@ -59,24 +54,9 @@ class _MyAppState extends State<MyApp> {
             var lang = settings.settingsModel.valueOrNull!.lang;
             return MaterialApp(
               // home: GalleryPage(),
+
               title: 'Warood',
-              theme: ThemeData(
-                pageTransitionsTheme: const PageTransitionsTheme(
-                  builders: {
-                    TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-                    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-                  },
-                ),
-                dividerColor: theme.borderColor,
-                fontFamily: lang == "en" ? "poppins" : "amiri_quran",
-                snackBarTheme: SnackBarThemeData(backgroundColor: theme.primary),
-                primaryColor: theme.primary,
-                errorColor: theme.error,
-                backgroundColor: theme.background,
-                appBarTheme: AppBarTheme(backgroundColor: theme.primary, elevation: 0),
-                drawerTheme: DrawerThemeData(backgroundColor: theme.background),
-                scaffoldBackgroundColor: theme.background,
-              ),
+              theme: ColoresThemes().mapColor(theme, lang == "en" ? "poppins" : "amiri_quran"),
               debugShowCheckedModeBanner: false,
               initialRoute: Routes.splash,
               navigatorKey: CustomNavigator.navigatorState,

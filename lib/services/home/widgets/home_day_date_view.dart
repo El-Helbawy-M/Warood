@@ -39,7 +39,7 @@ class HomeDayDate extends StatelessWidget {
             text: getLang("try_again"),
             height: 36,
             width: 160,
-            buttonColor: settings.settingsModel.valueOrNull!.theme.pendingColor,
+            buttonColor: Color(0xffD7AD09),
             onTap: () async {
               PrayTimeBloc.instance.add(Get());
             },
@@ -51,7 +51,7 @@ class HomeDayDate extends StatelessWidget {
             height: 36,
             width: 160,
             // textColor: Colors.black,
-            buttonColor: settings.settingsModel.valueOrNull!.theme.pendingColor,
+            buttonColor: Color(0xffD7AD09),
             onTap: () async {
               if (await PermissionHandler().checkLocationPermission()) {
                 PrayTimeBloc.instance.add(Get());

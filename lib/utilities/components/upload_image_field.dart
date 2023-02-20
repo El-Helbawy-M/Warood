@@ -64,7 +64,7 @@ class _UploadImageState extends State<UploadImage> {
                     borderRadius: BorderRadius.circular(15.0),
                     border: Border.all(
                       width: 1,
-                      color: widget.isFilled ? settings.settingsModel.valueOrNull!.theme.primary : (widget.hasError ? settings.settingsModel.valueOrNull!.theme.inActiveColor : settings.settingsModel.valueOrNull!.theme.borderColor),
+                      color: widget.isFilled ? Theme.of(context).primaryColor : (widget.hasError ? const Color(0xffDB5353) : Color(0xffE7E7E7)),
                     )
                     // image: DecorationImage(
                     //     image: Image.asset(
@@ -89,7 +89,7 @@ class _UploadImageState extends State<UploadImage> {
                               )
                             : drawSvgIcon(
                                 'gallery',
-                                iconColor: (widget.hasError ? settings.settingsModel.valueOrNull!.theme.error : settings.settingsModel.valueOrNull!.theme.error),
+                                iconColor: (widget.hasError ? Theme.of(context).errorColor : Theme.of(context).errorColor),
                               ),
                       ),
                     ),
@@ -100,7 +100,7 @@ class _UploadImageState extends State<UploadImage> {
                           : widget.label != null
                               ? widget.label!
                               : "Upload Image",
-                      style: TextStyle(color: settings.settingsModel.valueOrNull!.theme.greyTitle, fontSize: 24, fontWeight: FontWeight.w600),
+                      style: TextStyle(color: Theme.of(context).hintColor, fontSize: 24, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 6,
@@ -152,8 +152,8 @@ class _UploadImageState extends State<UploadImage> {
                                       widget.updatedImage!(null);
                                       if (widget.updateFile != null) widget.updateFile!(null);
                                     },
-                                    buttonColor: settings.settingsModel.valueOrNull!.theme.inActiveColor.withOpacity(.1),
-                                    textColor: settings.settingsModel.valueOrNull!.theme.inActiveColor,
+                                    buttonColor: Theme.of(context).errorColor.withOpacity(.1),
+                                    textColor: Theme.of(context).errorColor,
                                   ),
                                 ),
                               ],
@@ -171,7 +171,7 @@ class _UploadImageState extends State<UploadImage> {
         if (widget.hasError)
           Text(
             widget.errorText ?? "",
-            style: AppTextStyles.w400.copyWith(fontSize: 14, color: settings.settingsModel.valueOrNull!.theme.inActiveColor),
+            style: AppTextStyles.w400.copyWith(fontSize: 14, color: Theme.of(context).errorColor),
           )
       ],
     );

@@ -147,8 +147,8 @@ class VideoProgress extends StatelessWidget {
       children: [
         Slider.adaptive(
           value: currentValue.toDouble(),
-          activeColor: settings.settingsModel.valueOrNull!.theme.primary,
-          inactiveColor: settings.settingsModel.valueOrNull!.theme.inactiveProgress,
+          activeColor: Theme.of(context).primaryColor,
+          inactiveColor: Color(0xffEEEEEE),
           onChanged: onChanged,
           max: duration.toDouble(),
         ),

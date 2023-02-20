@@ -1,5 +1,5 @@
 import 'package:flutter_project_base/base/models/mapper.dart';
-import 'package:flutter_project_base/utilities/theme/colors/colors.dart';
+import 'package:flutter_project_base/utilities/theme/colors.dart';
 
 abstract class AppStates {}
 
@@ -13,7 +13,7 @@ class Done extends AppStates {
 }
 
 class SettingsDone extends AppStates {
-  ColorsTheme theme;
+  ColorsThemeType theme;
   String lang;
   SettingsDone({required this.lang, required this.theme});
 }

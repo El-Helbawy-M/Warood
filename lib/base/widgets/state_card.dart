@@ -8,13 +8,13 @@ class StateCard extends StatelessWidget {
   Color _stateColorMapper() {
     switch (state) {
       case PrayState.started:
-        return settings.settingsModel.valueOrNull!.theme.pendingColor;
+        return Color(0xffD7AD09);
       case PrayState.notStarted:
-        return settings.settingsModel.valueOrNull!.theme.notStartedColor;
+        return Color(0xffF5F5F5);
       case PrayState.checked:
-        return settings.settingsModel.valueOrNull!.theme.activeColor;
+        return Color(0xff41BF2D);
       case PrayState.ended:
-        return settings.settingsModel.valueOrNull!.theme.inActiveColor;
+        return Color(0xffDF4759);
     }
   }
 

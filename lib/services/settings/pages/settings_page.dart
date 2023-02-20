@@ -3,16 +3,10 @@ import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:flutter_project_base/base/models/settings_model.dart';
 import 'package:flutter_project_base/handlers/icon_handler.dart';
 import 'package:flutter_project_base/handlers/localization_handler.dart';
-import 'package:flutter_project_base/main.dart';
-import 'package:flutter_project_base/routers/navigator.dart';
-import 'package:flutter_project_base/routers/routers.dart';
 import 'package:flutter_project_base/utilities/components/custom_page_body.dart';
-import 'package:flutter_project_base/utilities/theme/colors/colors.dart';
-import 'package:flutter_project_base/utilities/theme/colors/dark_theme.dart';
+import 'package:flutter_project_base/utilities/theme/colors.dart';
 import 'package:flutter_project_base/utilities/theme/text_styles.dart';
-
 import '../../../base/blocs/settings_bloc.dart';
-import '../../../debug/log_printer.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -37,8 +31,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 children: [
                   // for change the theme
                   SwitchListTile(
-                    value: settings.settingsModel.valueOrNull!.theme is DarkTheme,
-                    activeColor: settings.settingsModel.valueOrNull!.theme.primary,
+                    value: settings.settingsModel.valueOrNull!.theme == ColorsThemeType.darkTheme,
+                    activeColor: Theme.of(context).primaryColor,
                     onChanged: (check) {
                       if (!check) {
                         settings.updateTheme = ColorsThemeType.lightTheme;
@@ -56,9 +50,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       settings.updateLang = settings.settingsModel.valueOrNull!.lang == "en" ? "ar" : "en";
                       Phoenix.rebirth(context);
                     },
-                    leading: drawSvgIcon("lang", iconColor: settings.settingsModel.valueOrNull!.theme.primary),
+                    leading: drawSvgIcon("lang", iconColor: Theme.of(context).primaryColor),
                     title: Text("Change language", style: AppTextStyles.w500.copyWith(fontSize: 14)),
-                    trailing: Text(settings.settingsModel.valueOrNull!.lang == "en" ? "Englisth" : "العربية", style: AppTextStyles.w500.copyWith(fontSize: 14, color: settings.settingsModel.valueOrNull!.theme.hintTextColor)),
+                    trailing: Text(settings.settingsModel.valueOrNull!.lang == "en" ? "Englisth" : "العربية", style: AppTextStyles.w500.copyWith(fontSize: 14, color: Theme.of(context).hintColor)),
                   ),
                   const Divider(height: 0),
                 ],

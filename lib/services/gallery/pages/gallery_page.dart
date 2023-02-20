@@ -16,7 +16,7 @@ class GalleryPage extends StatelessWidget {
     log(UserBloc.bloc.model.indexOfNextRewardToUnlock.toString());
     return CustomPageBody(
       appBar: AppBar(
-        backgroundColor: settings.settingsModel.valueOrNull!.theme.primary,
+        backgroundColor: Theme.of(context).primaryColor,
         title: const Text("Gallery"),
         elevation: 0,
       ),
@@ -59,7 +59,7 @@ class GalleryItem extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: isLocked || isNextReward ? settings.settingsModel.valueOrNull!.theme.primary : Colors.transparent,
+        color: isLocked || isNextReward ? Theme.of(context).primaryColor : Colors.transparent,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +72,7 @@ class GalleryItem extends StatelessWidget {
               progress.toString(),
               style: AppTextStyles.w500.copyWith(
                 fontSize: 14,
-                color: settings.settingsModel.valueOrNull!.theme.secondery,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           if (isLocked || isNextReward) drawSvgIcon("lock", iconColor: Colors.white),
@@ -82,7 +82,7 @@ class GalleryItem extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8),
               child: LinearProgressIndicator(
                 value: (progress / 30),
-                color: settings.settingsModel.valueOrNull!.theme.secondery,
+                color: Theme.of(context).colorScheme.secondary,
               ),
             ),
           if (isNextReward)
@@ -97,7 +97,7 @@ class GalleryItem extends StatelessWidget {
                       "${30 - progress} to Unlock",
                       style: AppTextStyles.w500.copyWith(
                         fontSize: 14,
-                        color: settings.settingsModel.valueOrNull!.theme.secondery,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ),
