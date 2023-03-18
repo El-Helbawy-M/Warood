@@ -11,5 +11,6 @@ abstract class FilePickerHelper {
     } else {
       return null;
     }
+    return null;
   }
 }

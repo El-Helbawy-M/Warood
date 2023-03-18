@@ -1,11 +1,6 @@
 import 'dart:convert';
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_project_base/base/blocs/settings_bloc.dart';
-import 'package:flutter_project_base/config/app_events.dart';
-import 'package:flutter_project_base/debug/log_printer.dart';
 import '../routers/navigator.dart';
 
 class AppLocale {

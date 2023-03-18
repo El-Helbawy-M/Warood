@@ -1,5 +1,5 @@
 import 'package:flutter_project_base/base/models/mapper.dart';
-import 'package:flutter_project_base/services/home/models/network_models/timings_model.dart';
+import 'package:flutter_project_base/services/home/models/timings_model.dart';
 import 'day_date_model.dart';
 
 class PrayerTimeModel extends SingleMapper {

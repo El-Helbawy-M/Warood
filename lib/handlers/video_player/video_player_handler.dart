@@ -4,8 +4,6 @@ import 'package:flutter_project_base/handlers/icon_handler.dart';
 import 'package:flutter_project_base/utilities/extensions/timer_formatter.dart';
 import 'package:video_player/video_player.dart';
 
-import '../../base/blocs/settings_bloc.dart';
-
 class VideoPlayerView extends StatefulWidget {
   const VideoPlayerView({super.key, required this.type, this.assetPath, this.filePath, this.networkUrl});
   final VideoType type;
@@ -148,7 +146,7 @@ class VideoProgress extends StatelessWidget {
         Slider.adaptive(
           value: currentValue.toDouble(),
           activeColor: Theme.of(context).primaryColor,
-          inactiveColor: Color(0xffEEEEEE),
+          inactiveColor: const Color(0xffEEEEEE),
           onChanged: onChanged,
           max: duration.toDouble(),
         ),

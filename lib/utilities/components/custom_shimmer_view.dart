@@ -63,7 +63,7 @@ class CustomShimmerContainer extends StatelessWidget {
     return CustomShimmer(
       child: Container(
         height: height,
-        width: width ?? MediaHelper.width(context),
+        width: width ?? MediaHelper.width,
         decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(15.0)),
       ),
     );

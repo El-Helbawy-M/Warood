@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_base/utilities/theme/media.dart';
 import 'package:flutter_project_base/utilities/theme/text_styles.dart';
-import '../../base/blocs/settings_bloc.dart';
 
 class CustomBtn extends StatelessWidget {
   const CustomBtn({
@@ -30,15 +29,15 @@ class CustomBtn extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(radius ?? 8),
         child: Container(
-          width: width ?? MediaHelper.width(context),
+          width: width ?? MediaHelper.width,
           height: height ?? 56,
           decoration: BoxDecoration(
-            color: buttonColor ?? Theme.of(context).primaryColor,
+            color: buttonColor ?? Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(radius ?? 8),
           ),
           child: Center(
             child: Text(
-              text ?? "Clicke here",
+              text ?? "Tap here",
               style: AppTextStyles.w700.copyWith(fontSize: 14, color: textColor ?? Colors.white),
             ),
           ),

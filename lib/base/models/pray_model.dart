@@ -1,11 +1,13 @@
-import '../../../../base/models/local_mapper.dart';
+import 'local_mapper.dart';
 
 class DayPraysModel extends LocaleSingleMapper {
   String? fajrCheckDate, dhuhrCheckDate, asrCheckDate, maghribCheckDate, ishaCheckDate;
-  late final String day, month, year;
+  late final String month, year;
+  late final int day;
   bool? fajrCheck, dhuhrCheck, asrCheck, maghribCheck, ishaCheck;
-  List<bool> checks = [];
-  List<String> checksDates = [];
+  List<bool> checks = [false, false, false, false, false];
+  List<String> checksDates = ["", "", "", "", ""];
+  int checkedPraysNum = 0;
   bool get allPraysIsChecked => (fajrCheck ?? false) && (dhuhrCheck ?? false) && (asrCheck ?? false) && (maghribCheck ?? false) && (ishaCheck ?? false);
   DayPraysModel();
   DayPraysModel.fromMap({
@@ -23,6 +25,21 @@ class DayPraysModel extends LocaleSingleMapper {
     required this.maghribCheck,
     required this.maghribCheckDate,
   }) {
+    if (fajrCheck ?? false) {
+      checkedPraysNum++;
+    }
+    if (dhuhrCheck ?? false) {
+      checkedPraysNum++;
+    }
+    if (asrCheck ?? false) {
+      checkedPraysNum++;
+    }
+    if (maghribCheck ?? false) {
+      checkedPraysNum++;
+    }
+    if (ishaCheck ?? false) {
+      checkedPraysNum++;
+    }
     checks = [fajrCheck ?? false, dhuhrCheck ?? false, asrCheck ?? false, maghribCheck ?? false, ishaCheck ?? false];
     checksDates = [fajrCheckDate ?? "", dhuhrCheckDate ?? "", asrCheckDate ?? "", maghribCheckDate ?? "", ishaCheckDate ?? ""];
   }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_base/debug/log_printer.dart';
@@ -34,8 +32,8 @@ class NetworkHandler {
       _dio.options.headers = {'Authorization': 'Bearer $token', 'Accept': 'application/json', 'Accept-Language': "US"};
     }
     try {
+      log_request(request: url!, requestMethod: "GET", query: query ?? {}, headers: _dio.options.headers);
       res = await _dio.get(url!, queryParameters: query);
-      log_request(request: url, requestMethod: "GET", query: query ?? {}, headers: _dio.options.headers);
       return res.data;
     } on DioError catch (e) {
       _errorHandler(e);

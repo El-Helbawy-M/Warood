@@ -32,9 +32,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
       const Duration(seconds: 2),
       () {
         if (SharedHandler.instance!.getData(key: SharedKeys().isLogin, valueType: ValueType.bool)) {
-          CustomNavigator.push(Routes.home, clean: true);
+          CustomNavigator.push(Routes.main, clean: true);
         } else {
-          CustomNavigator.push(Routes.home, clean: true);
+          CustomNavigator.push(Routes.main, clean: true);
         }
       },
     );
@@ -44,10 +44,10 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPageBody(
+    return Scaffold(
       body: SizedBox(
-        width: MediaHelper.width(context),
-        height: MediaHelper.height(context),
+        width: MediaHelper.width,
+        height: MediaHelper.height,
         child: Column(
           children: [
             Expanded(
@@ -56,7 +56,7 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
                 opacity: opacityAnimation.value,
                 child: Center(
                   child: Image.asset(
-                    "assets/images/splash.png",
+                    "assets/images/splash.jpg",
                     width: 250,
                     height: 250,
                   ),

@@ -1,8 +1,6 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_base/handlers/icon_handler.dart';
-import '../../base/blocs/settings_bloc.dart';
 import '../../handlers/file_picker_handler.dart';
 import '../theme/media.dart';
 import '../theme/text_styles.dart';
@@ -50,7 +48,7 @@ class _UploadImageState extends State<UploadImage> {
                   allowedExtensions: ['jpg'],
                   onSelected: (file) async {
                     setState(() => image = file);
-                    var multipartImage = await MultipartFile.fromFile(image!.path);
+                    // var multipartImage = await MultipartFile.fromFile(image!.path);
                     widget.updatedImage!(file);
                     if (widget.updateFile != null) widget.updateFile!(image);
                   },
@@ -58,13 +56,13 @@ class _UploadImageState extends State<UploadImage> {
               },
               child: Container(
                 height: image != null ? 230 : 180,
-                width: MediaHelper.width(context),
+                width: MediaHelper.width,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15.0),
                     border: Border.all(
                       width: 1,
-                      color: widget.isFilled ? Theme.of(context).primaryColor : (widget.hasError ? const Color(0xffDB5353) : Color(0xffE7E7E7)),
+                      color: widget.isFilled ? Theme.of(context).primaryColor : (widget.hasError ? const Color(0xffDB5353) : const Color(0xffE7E7E7)),
                     )
                     // image: DecorationImage(
                     //     image: Image.asset(
@@ -102,9 +100,7 @@ class _UploadImageState extends State<UploadImage> {
                               : "Upload Image",
                       style: TextStyle(color: Theme.of(context).hintColor, fontSize: 24, fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(
-                      height: 6,
-                    ),
+                    const SizedBox(height: 6),
                     // Padding(
                     //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     //   child: RichText(
@@ -117,9 +113,7 @@ class _UploadImageState extends State<UploadImage> {
                       visible: image != null,
                       child: Column(
                         children: [
-                          SizedBox(
-                            height: 16.0,
-                          ),
+                          const SizedBox(height: 16.0),
                           Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: Row(
@@ -135,7 +129,7 @@ class _UploadImageState extends State<UploadImage> {
                                           allowedExtensions: ['jpg'],
                                           onSelected: (file) async {
                                             setState(() => image = file);
-                                            var multipartImage = await MultipartFile.fromFile(image!.path);
+                                            // var multipartImage = await MultipartFile.fromFile(image!.path);
                                             widget.updatedImage!(file);
                                             if (widget.updateFile != null) widget.updateFile!(image);
                                           });

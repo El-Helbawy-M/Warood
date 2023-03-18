@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_project_base/handlers/localization_handler.dart';
-import '../../../base/blocs/settings_bloc.dart';
 import '../../../config/app_events.dart';
 import '../../../config/app_states.dart';
 import '../../../handlers/permission_handler.dart';
@@ -9,7 +8,7 @@ import '../../../utilities/components/custom_btn.dart';
 import '../../../utilities/components/custom_shimmer_view.dart';
 import '../../../utilities/theme/text_styles.dart';
 import '../Blocs/pray_time_bloc.dart';
-import '../models/network_models/prayer_time_model.dart';
+import '../models/prayer_time_model.dart';
 
 class HomeDayDate extends StatelessWidget {
   const HomeDayDate({
@@ -39,7 +38,7 @@ class HomeDayDate extends StatelessWidget {
             text: getLang("try_again"),
             height: 36,
             width: 160,
-            buttonColor: Color(0xffD7AD09),
+            buttonColor: const Color(0xffD7AD09),
             onTap: () async {
               PrayTimeBloc.instance.add(Get());
             },
@@ -51,7 +50,7 @@ class HomeDayDate extends StatelessWidget {
             height: 36,
             width: 160,
             // textColor: Colors.black,
-            buttonColor: Color(0xffD7AD09),
+            buttonColor: const Color(0xffD7AD09),
             onTap: () async {
               if (await PermissionHandler().checkLocationPermission()) {
                 PrayTimeBloc.instance.add(Get());

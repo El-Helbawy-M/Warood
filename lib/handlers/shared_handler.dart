@@ -41,6 +41,10 @@ class SharedHandler {
     }
   }
 
+  bool contain({required String key}) {
+    return _sharedPreferences.containsKey(key);
+  }
+
   dynamic getData({required String key, required ValueType valueType}) {
     switch (valueType) {
       case ValueType.string:

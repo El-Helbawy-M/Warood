@@ -4,7 +4,6 @@ import 'package:flutter_project_base/handlers/localization_handler.dart';
 import 'package:flutter_project_base/routers/navigator.dart';
 import 'package:flutter_project_base/routers/routers.dart';
 import 'package:flutter_project_base/utilities/theme/text_styles.dart';
-import '../blocs/settings_bloc.dart';
 
 class AppDrawer extends StatelessWidget with MenuOptionsActions {
   const AppDrawer({super.key});

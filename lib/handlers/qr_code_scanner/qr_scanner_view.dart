@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import '../../base/blocs/settings_bloc.dart';
 import '../../routers/navigator.dart';
 import '../../utilities/components/arrow_back.dart';
 
@@ -39,7 +38,7 @@ class _QrCodeScannerViewState extends State<QrCodeScannerView> {
           Expanded(
             child: QRView(
               key: qrKey,
-              overlay: QrScannerOverlayShape(borderRadius: 15, borderColor: Color(0xffE7E7E7)),
+              overlay: QrScannerOverlayShape(borderRadius: 15, borderColor: const Color(0xffE7E7E7)),
               onQRViewCreated: _onQRViewCreated,
             ),
           ),

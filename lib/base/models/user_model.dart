@@ -1,11 +1,9 @@
-import 'dart:convert';
-
 import 'package:flutter_project_base/base/models/mapper.dart';
 
 class UserModel extends SingleMapper {
   // veriables
   late final Map<String, int>? rewards;
-  late final int indexOfNextRewardToUnlock, progressToUnlock;
+  int indexOfNextRewardToUnlock = -1, progressToUnlock = 0;
 
   // constructors
   UserModel.formJson(Map json) {
@@ -13,11 +11,15 @@ class UserModel extends SingleMapper {
     _detectTheNextReward();
   }
 
+  UserModel() {
+    rewards = {"image 0": 0};
+    _detectTheNextReward();
+  }
+
   // functions
   void _detectTheNextReward() {
-    int latestReward = rewards!.length == 0 ? 1 : rewards!.length;
-    progressToUnlock = rewards![latestReward - 1] ?? 0;
-    indexOfNextRewardToUnlock = latestReward;
+    indexOfNextRewardToUnlock = rewards!.length;
+    progressToUnlock = rewards![indexOfNextRewardToUnlock - 1] ?? 0;
   }
 
   Map toMap() {

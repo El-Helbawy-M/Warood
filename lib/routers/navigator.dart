@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_base/handlers/qr_code_scanner/qr_scanner_view.dart';
 import 'package:flutter_project_base/routers/routers.dart';
+import 'package:flutter_project_base/services/digital_counter/pages/digital_counter_page.dart';
 import 'package:flutter_project_base/services/gallery/pages/gallery_page.dart';
-import 'package:flutter_project_base/services/home/pages/home_page.dart';
+import '../base/pages/main_page.dart';
 import '../services/settings/pages/settings_page.dart';
 import '../services/splash/pages/splash_page.dart';
 
@@ -33,12 +34,14 @@ class CustomNavigator {
         return _pageRoute(const SplashPage());
       case Routes.qrScannerCode:
         return _pageRoute(const QrCodeScannerView());
-      case Routes.home:
-        return _pageRoute(const HomePage());
+      case Routes.main:
+        return _pageRoute(const MainPage());
       case Routes.settings:
         return _pageRoute(const SettingsPage());
       case Routes.gallery:
         return _pageRoute(const GalleryPage());
+      case Routes.digitalCounter:
+        return _pageRoute(const DigitalCounterPage());
     }
     return MaterialPageRoute(builder: (_) => Container());
   }

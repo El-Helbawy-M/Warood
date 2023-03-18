@@ -1,10 +1,8 @@
-import 'package:flutter_project_base/debug/log_printer.dart';
 import 'package:flutter_project_base/handlers/local_database_hendler.dart';
 import 'package:flutter_project_base/services/home/Blocs/pray_check_bloc.dart';
 import 'package:intl/intl.dart';
-
 import '../../../config/database_table_names.dart';
-import '../models/core_models/pray_model.dart';
+import '../../../base/models/pray_model.dart';
 
 abstract class PrayCheckRepo {
   static Future<void> checkPray({required Pray pray, required DayPraysModel model, required DateTime date}) async {
@@ -35,11 +33,10 @@ abstract class PrayCheckRepo {
 
   static Future<DayPraysModel> getPrays() async {
     String month = DateFormat("MMMM").format(DateTime.now());
-    String day = DateFormat("EEEE").format(DateTime.now());
+    int day = DateTime.now().day;
     String year = DateFormat("y").format(DateTime.now());
     bool value = await LocaleDatabaseHadnler.localDatabaseHelper.contains(whereList: ['day', 'month', 'year'], whereData: [day, month, year], tableName: TablesNames().praysTable);
     if (value) {
-      log_data(label: "message", data: value);
       DayPraysModel model = await LocaleDatabaseHadnler.localDatabaseHelper.getEntity(whereList: ['day', 'month', 'year'], whereData: [day, month, year], opjectModel: DayPraysModel(), tableName: TablesNames().praysTable) as DayPraysModel;
       return model;
     } else {
@@ -49,10 +46,10 @@ abstract class PrayCheckRepo {
     }
   }
 
-  static Future<bool> checkReward() async {
-    String month = DateFormat("MMMM").format(DateTime.now());
-    String day = DateFormat("EEEE").format(DateTime.now());
-    String year = DateFormat("y").format(DateTime.now());
+  static Future<bool> checkReward(DateTime dateTime) async {
+    String month = DateFormat("MMMM").format(dateTime);
+    int day = dateTime.day;
+    String year = DateFormat("y").format(dateTime);
     DayPraysModel model = await LocaleDatabaseHadnler.localDatabaseHelper.getEntity(whereList: ['day', 'month', 'year'], whereData: [day, month, year], opjectModel: DayPraysModel(), tableName: TablesNames().praysTable) as DayPraysModel;
     return model.allPraysIsChecked;
   }

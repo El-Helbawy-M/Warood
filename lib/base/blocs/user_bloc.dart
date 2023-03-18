@@ -8,17 +8,21 @@ import 'package:flutter_project_base/routers/navigator.dart';
 class UserBloc extends Bloc<AppEvents, AppStates> {
   UserBloc() : super(Loading()) {
     on<Get>(_getUser);
-    on<Update>(_updateUser);
+    on<UpdateData>(_updateUser);
     on<SetState>(_setState);
-    add(Get());
   }
   static UserBloc get bloc => BlocProvider.of(CustomNavigator.navigatorState.currentContext!);
-  late UserModel model;
+  UserModel model = UserModel();
 
   // functions
   _getUser(AppEvents event, Emitter emit) async {
-    var data = await SharedHandler.instance!.getData(key: SharedKeys().user, valueType: ValueType.map);
-    model = UserModel.formJson(data);
+    if (SharedHandler.instance!.contain(key: SharedKeys().user)) {
+      var data = await SharedHandler.instance!.getData(key: SharedKeys().user, valueType: ValueType.map);
+      model = UserModel.formJson(data);
+    } else {
+      SharedHandler.instance!.setData(SharedKeys().user, value: UserModel().toMap());
+      model = UserModel();
+    }
     emit(Done());
   }
 
